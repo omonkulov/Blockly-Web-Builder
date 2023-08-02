@@ -1,19 +1,15 @@
-import { Ref, useEffect, useRef } from "react";
-import Workspace from "./workspace/WorkspaceComponent";
-import Blockly from "blockly/core";
+import Blockly, { WorkspaceSvg } from 'blockly';
+import { useRef, useEffect } from 'react'
+import getHTMLBlocks from '../../toolbox/html/HTMLBlocks';
 
-import locale from "blockly/msg/en";
+interface Props {
+  customClass: string;
+}
 
-Blockly.setLocale(locale);
-
-import "blockly/blocks";
-import getHTMLBlocks from "./toolbox/html/HTMLBlocks";
-import ToolBox from "./toolbox/Toolbox";
-
-function BlocklyComponent() {
-  const blocklyDiv = useRef<HTMLDivElement | string>(null);
+function HTMLWorkspace({customClass}: Props) {
+  const blocklyDiv = useRef<HTMLDivElement>(null);
   const toolbox = useRef<HTMLDivElement>(null);
-  const primaryWorkspace = useRef<unknown>(null);
+  const primaryWorkspace = useRef<WorkspaceSvg | null>(null);
 
   useEffect(() => {
     if (!blocklyDiv.current || !toolbox.current) return;
@@ -39,17 +35,17 @@ function BlocklyComponent() {
       },
     });
 
-    if(primaryWorkspace.current) {
+    if (primaryWorkspace.current) {
       window.NameSpace = primaryWorkspace.current;
     }
   }, [blocklyDiv, toolbox, primaryWorkspace]);
 
   return (
-    <div className="h-full w-full p-5 bg-red-100">
-      <Workspace ref={blocklyDiv as Ref<HTMLDivElement>} />
-      <ToolBox ref={toolbox} />
+    <div className={customClass}>
+      <div className="w-full h-full" ref={blocklyDiv} id='blocklyDiv2'></div>
+      <div className="hidden" ref={toolbox} id='toolboxDiv2'></div>
     </div>
-  );
+  )
 }
 
-export default BlocklyComponent;
+export default HTMLWorkspace

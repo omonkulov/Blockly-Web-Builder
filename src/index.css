@@ -6,3 +6,38 @@
 svg[display="none"] {
   display: none;
 }
+
+.blocklyWidgetDiv > .blocklyMenu {
+ border: 0px !important;
+}
+
+.injectionDiv {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+
+.ontopofall{
+  z-index: 99999;
+}
+
+
+.prev-small{
+  width: 20%;
+  max-width: 250px;
+}
+
+.prev-medium{
+  width: 35%;
+  max-width: 450px;
+}
+
+.prev-default{
+  width: 30%;
+  max-width: 400px;
+}
+
+.prev-large{
+  width: 80%;
+}

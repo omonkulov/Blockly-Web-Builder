@@ -5,3 +5,9 @@ declare global {
   }
 }
 window.NameSpace = window.NameSpace || {};
+
+
+
+export type Tab = "HTML" | "CSS" | "Javascript";
+
+export type PreviewSize = "Default" | "Small" | "Medium" | "Large";

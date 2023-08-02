@@ -3,17 +3,9 @@ function getHTMLBlocks() {
     kind: "flyoutToolbox",
     contents: [
       {
-        kind: "block",
-        type: "logic_operation",
-      },
-      {
         kind: "label",
-        text: "A label",
+        text: "HTML",
         "web-class": "myLabelStyle",
-      },
-      {
-        kind: "label",
-        text: "Another label",
       },
       {
         kind: "block",
