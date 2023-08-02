@@ -2,7 +2,6 @@ import { useRecoilState } from "recoil";
 import { Tab } from "../types";
 import PreviewTopMenu from "./PreviewTopMenu";
 import { prefernceState } from "../recoil/preferenceState";
-import PreviewSizeDropdown from "../components/PreviewSizeDropdown";
 
 interface Props {
   tab: Tab;
@@ -40,8 +39,8 @@ function WorkspaceTopMenu(props: Props) {
         </button>
       </div>
 
-      <div className={"flex-1 justify-self-end self-center	bg-red-300 h-full" + (!preference.hidePreview && " hidden")}>
-        <PreviewSizeDropdown />
+      <div className={"flex-1 justify-self-end self-center	bg-red-300 h-full" + (!preference.hidePreview ? " hidden" : "")}>
+        <PreviewTopMenu />
       </div>
     </div>
   );

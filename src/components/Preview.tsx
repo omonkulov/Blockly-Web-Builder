@@ -13,14 +13,15 @@ function Preview() {
     <div className={width + display + " h-full flex flex-col ml-3"}>
       <PreviewTopMenu />
       <div className="flex-1 flex flex-col bg-white w-full h-full rounded-bl-lg rounded-tl-lg">
-        <div className="flex-1 flex h-full w-full bg-red-200">
+      <div className="h-12 flex w-full bg-red-200">Devices</div>
+        <div className="flex-1 flex h-full w-full bg-red-200 rounded-bl-lg rounded-tl-lg">
           <iframe
             className="h-full w-full bg-green-100"
-            src="https://www.w3schools.com"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
             title="W3Schools Free Online Web Tutorials"
           />
         </div>
-        <div className="h-12 flex h-full w-full bg-red-200">Status</div>
+        <div className="h-12 flex w-full bg-red-200">Status</div>
       </div>
     </div>
   );
