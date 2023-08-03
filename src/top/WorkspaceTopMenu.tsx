@@ -13,23 +13,24 @@ interface Props {
 function WorkspaceTopMenu(props: Props) {
   const [preference, _] = useRecoilState(prefernceState);
 
-  const rootCSS = "h-8 rounded-tl-md rounded-tr-md px-4 outline outline-1 outline-gray-300";
+  const rootCSS =
+    "h-8 rounded-tl-md rounded-tr-md px-4 outline outline-1 outline-gray-300";
   const inactiveTab = rootCSS + " bg-gray-300 text-gray-500";
-  const activeTab = rootCSS +  " bg-white shadow";
+  const activeTab = rootCSS + " bg-white shadow";
   return (
     <div className="h-10 w-full bg-blue-100 flex items-end justify-start">
       <div className="self-star flex gap-1">
-        <button
-          className={props.tab === "CSS" ? activeTab : inactiveTab}
-          onClick={props.callbackCSSTab}
-        >
-          CSS
-        </button>
         <button
           className={props.tab === "HTML" ? activeTab : inactiveTab}
           onClick={props.callbackHTMLTab}
         >
           HTML
+        </button>
+        <button
+          className={props.tab === "CSS" ? activeTab : inactiveTab}
+          onClick={props.callbackCSSTab}
+        >
+          CSS
         </button>
         <button
           className={props.tab === "Javascript" ? activeTab : inactiveTab}
@@ -39,7 +40,12 @@ function WorkspaceTopMenu(props: Props) {
         </button>
       </div>
 
-      <div className={"flex-1 justify-self-end self-center	bg-red-300 h-full" + (!preference.hidePreview ? " hidden" : "")}>
+      <div
+        className={
+          "flex-1 justify-self-end self-center	bg-red-300 h-full" +
+          (!preference.hidePreview ? " hidden" : "")
+        }
+      >
         <PreviewTopMenu />
       </div>
     </div>

@@ -20,9 +20,9 @@ function App() {
 
   const workspaceClass = "absolute inset-0 ";
   const cssWorkspaceClass =
-    workspaceClass + (tab === "HTML" ? "" : "invisible");
-  const htmlWorkspaceClass =
     workspaceClass + (tab === "CSS" ? "" : "invisible");
+  const htmlWorkspaceClass =
+    workspaceClass + (tab === "HTML" ? "" : "invisible");
   const jsWorkspaceClass =
     workspaceClass + (tab === "Javascript" ? "" : "invisible");
 
@@ -42,14 +42,14 @@ function App() {
       <div className="flex-1 h-full flex">
         <div className="flex-1 w-full h-full flex flex-col">
           <WorkspaceTopMenu
-            callbackCSSTab={() => handleClick("CSS")}
             callbackHTMLTab={() => handleClick("HTML")}
+            callbackCSSTab={() => handleClick("CSS")}
             callbackJavascriptTab={() => handleClick("Javascript")}
             tab={tab}
           />
           <div className="relative flex-1 w-full rounded-br-lg rounded-tr-lg">
-            <CSSWorkspace key={"CSS"} customClass={cssWorkspaceClass} />
             <HTMLWorkspace key={"HTML"} customClass={htmlWorkspaceClass} />
+            <CSSWorkspace key={"CSS"} customClass={cssWorkspaceClass} />
             <JavascriptWorkspace
               key={"Javascript"}
               customClass={jsWorkspaceClass}
