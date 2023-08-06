@@ -53,3 +53,7 @@ svg[display="none"] {
   /* zoom:...; */ /* This is non-standard feature */
                   /* FireFox and Opera don't support it */
 }
+
+.myLabelStyle >.blocklyFlyoutLabelText{
+  font: bold 18pt monospace !important;
+}

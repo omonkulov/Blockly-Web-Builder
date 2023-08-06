@@ -1,7 +1,7 @@
 import Blockly, { WorkspaceSvg } from 'blockly';
 import { useRef, useEffect } from 'react'
 import getHTMLBlocks from '../../toolbox/html/HTMLBlocks';
-
+import HTMLTheme from "./HTMLTheme";
 import "../../blocks/html/htmlBlocks";
 
 interface Props {
@@ -18,7 +18,7 @@ function HTMLWorkspace({customClass}: Props) {
 
     primaryWorkspace.current = Blockly.inject(blocklyDiv.current, {
       renderer: "zelos",
-      theme: "zelos",
+      theme: HTMLTheme,
       toolbox: getHTMLBlocks(),
       readOnly: false,
       trashcan: true,
@@ -39,6 +39,7 @@ function HTMLWorkspace({customClass}: Props) {
 
     if (primaryWorkspace.current) {
       window.NameSpace = primaryWorkspace.current;
+      Blockly.serialization.blocks.append({'type': 'document_block'}, primaryWorkspace.current)
     }
   }, [blocklyDiv, toolbox, primaryWorkspace]);
 
