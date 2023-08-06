@@ -2,16 +2,15 @@ import { useRecoilState } from "recoil";
 import { Tab } from "../types";
 import PreviewTopMenu from "./PreviewTopMenu";
 import { prefernceState } from "../recoil/preferenceState";
+import { tabState } from "../recoil/tabState";
 
 interface Props {
-  tab: Tab;
-  callbackCSSTab: () => void;
-  callbackHTMLTab: () => void;
-  callbackJavascriptTab: () => void;
+  callback: (val: Tab) => void;
 }
 
 function WorkspaceTopMenu(props: Props) {
-  const [preference, _] = useRecoilState(prefernceState);
+  const [preference, _preference] = useRecoilState(prefernceState);
+  const [tab, _tab] = useRecoilState(tabState);
 
   const rootCSS =
     "h-8 rounded-tl-md rounded-tr-md px-4 outline outline-1 outline-gray-300";
@@ -21,20 +20,20 @@ function WorkspaceTopMenu(props: Props) {
     <div className="h-10 w-full bg-blue-100 flex items-end justify-start">
       <div className="self-star flex gap-1">
         <button
-          className={props.tab === "HTML" ? activeTab : inactiveTab}
-          onClick={props.callbackHTMLTab}
+          className={tab.currentTab === "HTML" ? activeTab : inactiveTab}
+          onClick={() => props.callback("HTML")}
         >
           HTML
         </button>
         <button
-          className={props.tab === "CSS" ? activeTab : inactiveTab}
-          onClick={props.callbackCSSTab}
+          className={tab.currentTab  === "CSS" ? activeTab : inactiveTab}
+          onClick={() => props.callback("CSS")}
         >
           CSS
         </button>
         <button
-          className={props.tab === "Javascript" ? activeTab : inactiveTab}
-          onClick={props.callbackJavascriptTab}
+          className={tab.currentTab  === "Javascript" ? activeTab : inactiveTab}
+          onClick={() => props.callback("Javascript")}
         >
           Javascript
         </button>

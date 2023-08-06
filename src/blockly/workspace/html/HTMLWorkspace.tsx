@@ -2,6 +2,8 @@ import Blockly, { WorkspaceSvg } from 'blockly';
 import { useRef, useEffect } from 'react'
 import getHTMLBlocks from '../../toolbox/html/HTMLBlocks';
 
+import "../../blocks/html/htmlBlocks";
+
 interface Props {
   customClass: string;
 }

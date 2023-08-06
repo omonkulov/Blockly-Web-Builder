@@ -8,55 +8,57 @@ import HTMLWorkspace from "./blockly/workspace/html/HTMLWorkspace";
 import JavascriptWorkspace from "./blockly/workspace/javascript/JavascriptWorkspace";
 import TopMenu from "./top/TopMenu";
 import WorkspaceTopMenu from "./top/WorkspaceTopMenu";
-import PreviewTopMenu from "./top/PreviewTopMenu";
-import SystemEvent from "./events/SystemEvent";
+
 import Preview from "./components/Preview";
+import { useRecoilState } from "recoil";
+import { tabState } from "./recoil/tabState";
 
 // Set language
 Blockly.setLocale(en);
 
 function App() {
-  const [tab, setTab] = useState<Tab>("HTML");
-
+  const [tab, setTab] = useRecoilState(tabState);
   const workspaceClass = "absolute inset-0 ";
-  const cssWorkspaceClass =
-    workspaceClass + (tab === "CSS" ? "" : "invisible");
-  const htmlWorkspaceClass =
-    workspaceClass + (tab === "HTML" ? "" : "invisible");
-  const jsWorkspaceClass =
-    workspaceClass + (tab === "Javascript" ? "" : "invisible");
+
+  /**
+   *
+   * @param tabName Workspace Tab that the class will be applied for
+   * @returns
+   */
+  function getWorkspaceClass(tabName: Tab): string {
+    return workspaceClass + (tab.currentTab === tabName ? "" : " invisible");
+  }
 
   function handleClick(val: Tab) {
-    setTab(val);
-    setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 50);
+    // Hide any open dropdowns before switching tab
+    Blockly.DropDownDiv.hideWithoutAnimation();
+    // Switch tab
+    setTab({ ...tab, currentTab: val });
   }
-  
+
   return (
     <div className="w-screen h-screen flex flex-col bg-blue-100">
       {/* Top Menu */}
       <TopMenu />
 
-      {/* Workspace + Preview */}
       <div className="flex-1 h-full flex">
+        {/* Workspace */}
         <div className="flex-1 w-full h-full flex flex-col">
-          <WorkspaceTopMenu
-            callbackHTMLTab={() => handleClick("HTML")}
-            callbackCSSTab={() => handleClick("CSS")}
-            callbackJavascriptTab={() => handleClick("Javascript")}
-            tab={tab}
-          />
+          <WorkspaceTopMenu callback={handleClick} />
           <div className="relative flex-1 w-full rounded-br-lg rounded-tr-lg">
-            <HTMLWorkspace key={"HTML"} customClass={htmlWorkspaceClass} />
-            <CSSWorkspace key={"CSS"} customClass={cssWorkspaceClass} />
+            <HTMLWorkspace
+              key={"HTML"}
+              customClass={getWorkspaceClass("HTML")}
+            />
+            <CSSWorkspace key={"CSS"} customClass={getWorkspaceClass("CSS")} />
             <JavascriptWorkspace
               key={"Javascript"}
-              customClass={jsWorkspaceClass}
+              customClass={getWorkspaceClass("Javascript")}
             />
           </div>
         </div>
 
+        {/* Preview */}
         <Preview />
       </div>
     </div>

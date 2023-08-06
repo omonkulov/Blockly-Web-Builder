@@ -20,6 +20,10 @@ function getHTMLBlocks() {
         kind: "block",
         type: "logic_boolean",
       },
+      {
+        kind: "block",
+        type: "test_react_field",
+      },
     ],
   };
 

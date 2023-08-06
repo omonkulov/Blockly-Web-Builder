@@ -16,8 +16,7 @@ function Preview() {
         <div className="flex-1 flex h-full w-full bg-red-200 rounded-bl-lg rounded-tl-lg">
           <iframe
             className="h-full w-full bg-green-100"
-            src="https://programiz.pro"
-            sandbox="true"
+            src=""
             title="W3Schools Free Online Web Tutorials"
           />
         </div>
