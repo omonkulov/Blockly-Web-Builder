@@ -3,9 +3,9 @@ import { PreviewSize, Tab } from "./types";
 import Blockly from "blockly/core";
 
 import en from "blockly/msg/en";
-import CSSWorkspace from "./blockly/workspace/css/CSSWorkspace";
-import HTMLWorkspace from "./blockly/workspace/html/HTMLWorkspace";
-import JavascriptWorkspace from "./blockly/workspace/javascript/JavascriptWorkspace";
+import CSSWorkspace from "./blockly/workspace/CSSWorkspace";
+import HTMLWorkspace from "./blockly/workspace/HTMLWorkspace";
+import JavascriptWorkspace from "./blockly/workspace/JavascriptWorkspace";
 import TopMenu from "./top/TopMenu";
 import WorkspaceTopMenu from "./top/WorkspaceTopMenu";
 

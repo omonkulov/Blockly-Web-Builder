@@ -1,6 +1,6 @@
 import * as Blockly from "blockly/core";
 
-import "../custom_fields/BlocklyReactField";
+import "./custom_fields/BlocklyReactField";
 
 let testReactField = {
   type: "test_react_field",
@@ -43,7 +43,7 @@ Blockly.Blocks["id_block"] = {
       args0: [
         {
           type: "field_input",
-          name: "name",
+          name: "id",
           text: "id",
           spellcheck: false,
         },
@@ -61,7 +61,7 @@ Blockly.Blocks["class_block"] = {
       args0: [
         {
           type: "field_input",
-          name: "name",
+          name: "class",
           text: "class",
           spellcheck: false,
         },
@@ -79,7 +79,7 @@ Blockly.Blocks["on_click_block"] = {
       args0: [
         {
           type: "field_input",
-          name: "name",
+          name: "func",
           text: "func",
           spellcheck: false,
         },
@@ -95,7 +95,7 @@ Blockly.Blocks["div_block"] = {
     this.jsonInit({
       message0: "div",
       message1: "%1",
-      args1: [{ type: "input_statement", name: "div_child" }],
+      args1: [{ type: "input_statement", name: "_child" }],
       previousStatement: null,
       nextStatement: null,
     });
@@ -125,7 +125,7 @@ Blockly.Blocks["div_attributes_block"] = {
         },
       ],
       message1: "%1",
-      args1: [{ type: "input_statement", name: "div_child" }],
+      args1: [{ type: "input_statement", name: "_child" }],
       previousStatement: null,
       nextStatement: null,
       inputsInline: true,
@@ -151,7 +151,7 @@ Blockly.defineBlocksWithJsonArray([
     type: "h1_block",
     message0: "h1",
     message1: "%1",
-    args1: [{ type: "input_statement", name: "div_child" }],
+    args1: [{ type: "input_statement", name: "_child" }],
     previousStatement: null,
     nextStatement: null,
     colour: H_Tag_COLOR,
@@ -161,7 +161,7 @@ Blockly.defineBlocksWithJsonArray([
     lastDummyAlign0: "LEFT",
     message0: "h2",
     message1: "%1",
-    args1: [{ type: "input_statement", name: "div_child" }],
+    args1: [{ type: "input_statement", name: "_child" }],
     previousStatement: null,
     nextStatement: null,
     colour: H_Tag_COLOR,
@@ -170,7 +170,7 @@ Blockly.defineBlocksWithJsonArray([
     type: "h3_block",
     message0: "h3",
     message1: "%1",
-    args1: [{ type: "input_statement", name: "div_child" }],
+    args1: [{ type: "input_statement", name: "_child" }],
     previousStatement: null,
     nextStatement: null,
     colour: H_Tag_COLOR,
@@ -179,7 +179,7 @@ Blockly.defineBlocksWithJsonArray([
     type: "h4_block",
     message0: "h4",
     message1: "%1",
-    args1: [{ type: "input_statement", name: "div_child" }],
+    args1: [{ type: "input_statement", name: "_child" }],
     previousStatement: null,
     nextStatement: null,
     colour: H_Tag_COLOR,
@@ -188,7 +188,7 @@ Blockly.defineBlocksWithJsonArray([
     type: "h5_block",
     message0: "h5",
     message1: "%1",
-    args1: [{ type: "input_statement", name: "div_child" }],
+    args1: [{ type: "input_statement", name: "_child" }],
     previousStatement: null,
     nextStatement: null,
     colour: H_Tag_COLOR,

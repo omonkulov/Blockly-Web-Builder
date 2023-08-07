@@ -1,12 +1,12 @@
 import Blockly, { WorkspaceSvg } from 'blockly';
 import { useRef, useEffect } from 'react'
-import getJavaScriptBlocks from '../../toolbox/javascript/JavascriptBlocks';
+import getCSSBlocks from '../toolbox/CSSToolbox';
 
 interface Props {
   customClass: string;
 }
 
-function JavascriptWorkspace({customClass}: Props) {
+function CSSWorkspace({customClass}: Props) {
   const blocklyDiv = useRef<HTMLDivElement>(null);
   const toolbox = useRef<HTMLDivElement>(null);
   const primaryWorkspace = useRef<WorkspaceSvg | null>(null);
@@ -17,7 +17,7 @@ function JavascriptWorkspace({customClass}: Props) {
     primaryWorkspace.current = Blockly.inject(blocklyDiv.current, {
       renderer: "zelos",
       theme: "zelos",
-      toolbox: getJavaScriptBlocks(),
+      toolbox: getCSSBlocks(),
       readOnly: false,
       trashcan: true,
       move: {
@@ -40,13 +40,12 @@ function JavascriptWorkspace({customClass}: Props) {
     }
   }, [blocklyDiv, toolbox, primaryWorkspace]);
 
-
   return (
-    <div className={customClass}> 
-      <div className="w-full h-full" ref={blocklyDiv} id='blocklyDiv3'></div>
-      <div className="hidden" ref={toolbox} id='toolboxDiv3'></div>
+    <div className={customClass}>
+      <div className="w-full h-full" ref={blocklyDiv} id='blocklyDiv'></div>
+      <div className="hidden" ref={toolbox} id='toolboxDiv'></div>
     </div>
   )
 }
 
-export default JavascriptWorkspace
+export default CSSWorkspace
