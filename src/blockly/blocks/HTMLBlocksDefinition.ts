@@ -23,6 +23,24 @@ Blockly.Blocks["test_react_field"] = {
   },
 };
 
+Blockly.Blocks["html_string_block"] = {
+  init: function () {
+    this.jsonInit({
+      message0: "%1",
+      args0: [
+        {
+          type: "field_input",
+          name: "STRING",
+          text: "Hello World",
+        },
+      ],
+      previousStatement: null,
+      nextStatement: null,
+    });
+    this.setStyle("loop_blocks");
+  },
+};
+
 Blockly.Blocks["document_block"] = {
   init: function () {
     this.jsonInit({
@@ -146,51 +164,169 @@ Blockly.Blocks["div_attributes_block"] = {
 '%{BKY_PROCEDURES_HUE}'
  */
 const H_Tag_COLOR = 60;
-Blockly.defineBlocksWithJsonArray([
-  {
-    type: "h1_block",
-    message0: "h1",
-    message1: "%1",
-    args1: [{ type: "input_statement", name: "_child" }],
-    previousStatement: null,
-    nextStatement: null,
-    colour: H_Tag_COLOR,
+// Blockly.defineBlocksWithJsonArray([
+//   {
+//     type: "h1_block",
+//     message0: "h1",
+//     message1: "%1",
+//     args1: [{ type: "input_statement", name: "_child" }],
+//     previousStatement: null,
+//     nextStatement: null,
+//     colour: H_Tag_COLOR,
+//   },
+//   {
+//     type: "h2_block",
+//     lastDummyAlign0: "LEFT",
+//     message0: "h2",
+//     message1: "%1",
+//     args1: [{ type: "input_statement", name: "_child" }],
+//     previousStatement: null,
+//     nextStatement: null,
+//     colour: H_Tag_COLOR,
+//   },
+//   {
+//     type: "h3_block",
+//     message0: "h3",
+//     message1: "%1",
+//     args1: [{ type: "input_statement", name: "_child" }],
+//     previousStatement: null,
+//     nextStatement: null,
+//     colour: H_Tag_COLOR,
+//   },
+//   {
+//     type: "h4_block",
+//     message0: "h4",
+//     message1: "%1",
+//     args1: [{ type: "input_statement", name: "_child" }],
+//     previousStatement: null,
+//     nextStatement: null,
+//     colour: H_Tag_COLOR,
+//   },
+//   {
+//     type: "h5_block",
+//     message0: "h5",
+//     message1: "%1",
+//     args1: [{ type: "input_statement", name: "_child" }],
+//     previousStatement: null,
+//     nextStatement: null,
+//     colour: H_Tag_COLOR,
+//   },
+// ]);
+
+
+/*------------------ P Blocks -----------------*/
+
+
+Blockly.Blocks["p_block"] = {
+  init: function () {
+    this.jsonInit({
+      message0: "p",
+      message1: "%1",
+      args1: [{ type: "input_statement", name: "_child" }],
+      previousStatement: null,
+      nextStatement: null,
+    });
+    this.setStyle("text_blocks"); // You might want to change the style depending on your theme.
   },
-  {
-    type: "h2_block",
-    lastDummyAlign0: "LEFT",
-    message0: "h2",
-    message1: "%1",
-    args1: [{ type: "input_statement", name: "_child" }],
-    previousStatement: null,
-    nextStatement: null,
-    colour: H_Tag_COLOR,
+};
+
+Blockly.Blocks["p_single_block"] = {
+  init: function () {
+    this.jsonInit({
+      message0: "p %1",
+      args0: [
+        {
+          type: "field_input",
+          name: "STRING",
+          text: "Sample text",
+        },
+      ],
+      previousStatement: null,
+      nextStatement: null,
+    });
+    this.setStyle("text_blocks"); 
   },
-  {
-    type: "h3_block",
-    message0: "h3",
-    message1: "%1",
-    args1: [{ type: "input_statement", name: "_child" }],
-    previousStatement: null,
-    nextStatement: null,
-    colour: H_Tag_COLOR,
+};
+
+
+/*------------------ A Block -----------------*/
+
+Blockly.Blocks["a_block"] = {
+  init: function () {
+    this.jsonInit({
+      message0: "a href: %1",
+      args0: [
+        {
+          type: "field_input",
+          name: "HREF",
+          text: "http://example.com",
+        },
+      ],
+      message1: "%1",
+      args1: [{ type: "input_statement", name: "_child" }],
+      previousStatement: null,
+      nextStatement: null,
+    });
+    this.setStyle("url_blocks"); 
   },
-  {
-    type: "h4_block",
-    message0: "h4",
-    message1: "%1",
-    args1: [{ type: "input_statement", name: "_child" }],
-    previousStatement: null,
-    nextStatement: null,
-    colour: H_Tag_COLOR,
+};
+
+Blockly.Blocks["a_single_block"] = {
+  init: function () {
+    this.jsonInit({
+      message0: "a href: %1 text: %2",
+      args0: [
+        {
+          type: "field_input",
+          name: "HREF",
+          text: "http://example.com",
+        },
+        {
+          type: "field_input",
+          name: "STRING",
+          text: "Link",
+        },
+      ],
+      previousStatement: null,
+      nextStatement: null,
+    });
+    this.setStyle("url_blocks"); 
   },
-  {
-    type: "h5_block",
-    message0: "h5",
-    message1: "%1",
-    args1: [{ type: "input_statement", name: "_child" }],
-    previousStatement: null,
-    nextStatement: null,
-    colour: H_Tag_COLOR,
-  },
-]);
+};
+
+/*------------------ H Blocks -----------------*/
+
+for (let i = 1; i <= 6; i++) {
+  Blockly.Blocks[`h${i}_block`] = {
+    init: function () {
+      this.jsonInit({
+        message0: `h${i}`,
+        message1: "%1",
+        args1: [{ type: "input_statement", name: `_child` }],
+        previousStatement: null,
+        nextStatement: null,
+      });
+      this.setStyle("text_blocks"); // Assuming a generic style for all headings
+    },
+  };
+}
+
+for (let i = 1; i <= 6; i++) {
+  Blockly.Blocks[`h${i}_single_block`] = {
+    init: function () {
+      this.jsonInit({
+        message0: `h${i} %1`,
+        args0: [
+          {
+            type: "field_input",
+            name: `STRING`,
+            text: `Heading ${i}`,
+          },
+        ],
+        previousStatement: null,
+        nextStatement: null,
+      });
+      this.setStyle("text_blocks"); // Assuming a generic style for all headings
+    },
+  };
+}

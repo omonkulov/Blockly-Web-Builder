@@ -47,7 +47,6 @@ class BlocklyReactField extends Blockly.Field {
   }
 
   dropdownDispose_() {
-    console.log("hello");
     if (window.getSelection) {
       window.getSelection()?.removeAllRanges();
     }

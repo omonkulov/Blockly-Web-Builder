@@ -5,6 +5,11 @@ import HTMLTheme from "./HTMLTheme";
 import "../blocks/HTMLBlocksDefinition";
 import { loadWorkspace, saveWorkspace } from "../helper/serialization";
 import { htmlGenerator } from "../generator/HTMLGenerator";
+import { useRecoilState } from "recoil";
+import { codeState } from "../../recoil/codeState";
+// @ts-ignore
+import {ContinuousToolbox, ContinuousFlyout, ContinuousMetrics} from '@blockly/continuous-toolbox';
+
 
 interface Props {
   customClass: string;
@@ -16,11 +21,13 @@ function HTMLWorkspace({ customClass }: Props) {
   const blocklyDiv = useRef<HTMLDivElement>(null);
   const toolbox = useRef<HTMLDivElement>(null);
   const primaryWorkspace = useRef<WorkspaceSvg | null>(null);
-
+  const [_code, setCode] = useRecoilState(codeState);
   const generateCode = () => {
     if (!primaryWorkspace.current) return;
-    var code = htmlGenerator.workspaceToCode(primaryWorkspace.current);
-    console.log(code);
+    let code = htmlGenerator.workspaceToCode(primaryWorkspace.current);
+    setCode((prev) => {
+      return { ...prev, html: code };
+    });
   };
 
   useEffect(() => {
@@ -45,6 +52,11 @@ function HTMLWorkspace({ customClass }: Props) {
         scaleSpeed: 1.1,
         pinch: true,
       },
+      plugins: {
+        toolbox: ContinuousToolbox,
+        flyoutsVerticalToolbox: ContinuousFlyout,
+        metricsManager: ContinuousMetrics,
+      },
     });
 
     if (primaryWorkspace.current) {
@@ -53,7 +65,20 @@ function HTMLWorkspace({ customClass }: Props) {
         { type: "document_block" },
         primaryWorkspace.current
       );
+      primaryWorkspace.current.addChangeListener((e) => {
+        if ((e.type && e.type === "move") || e.type === "change") {
+          let reason = (e as any).reason;
+          if (reason && Array.isArray(reason) && reason.length > 0) {
+            if (reason[0] === "disconnect" || reason[0] === "connect") {
+              generateCode();
+            }
+          } else if (e.type === "change") {
+            generateCode();
+          }
+        }
+      });
       loadWorkspace(primaryWorkspace.current, HTMLLocalStorageKey);
+      generateCode();
     }
 
     return () => {
@@ -77,7 +102,6 @@ function HTMLWorkspace({ customClass }: Props) {
 
   return (
     <div className={customClass}>
-      <button onClick={generateCode}>Convert</button>
       <div className="w-full h-full" ref={blocklyDiv} id="blocklyDiv2"></div>
       <div className="hidden" ref={toolbox} id="toolboxDiv2"></div>
     </div>

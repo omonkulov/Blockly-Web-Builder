@@ -101,10 +101,14 @@ htmlGenerator.forBlock["h5_block"] = (block: Blockly.Block) => {
 
 
 
+/**========================================================================
+ *                           String
+ *========================================================================**/
 
-
-
-
+htmlGenerator.forBlock["html_string_block"] = (block: Blockly.Block) => {
+  const code = block.getFieldValue("STRING");
+  return code;
+};
 
 
 
@@ -123,7 +127,7 @@ htmlGenerator.forBlock["h5_block"] = (block: Blockly.Block) => {
  * @return class
  */
 function needNewLine(block: Blockly.Block): string {
-  console.log("---- ", block.type, " ---- ");
+  // console.log("---- ", block.type, " ---- ");
   // console.log(" previous  :", block.getPreviousBlock()?.type)
   // console.log(" statement :", block.getFirstStatementConnection()?.targetBlock()?.type)
   // console.log(" next      :", block.getNextBlock()?.type)
