@@ -1,30 +1,3 @@
-function getHTMLBlocks() {
-  const toolboxBlocks = {
-    kind: "flyoutToolbox",
-    contents: [
-      {
-        kind: "label",
-        text: "Container",
-        "web-class": "myLabelStyle",
-      },
-      {
-        kind: "label",
-        text: "Header",
-        "web-class": "myLabelStyle",
-      },
-      {
-        kind: "category",
-        name: "Logic",
-        contents: HeaderBlocks
-      },
-    ],
-  };
-
-  return toolboxBlocks;
-}
-
-export default getHTMLBlocks;
-
 const HeaderBlocks = [
   {
     kind: "block",
@@ -132,3 +105,33 @@ const TextBlocks = [
     type: "a_single_block",
   },
 ];
+
+function getHTMLBlocks() {
+  const toolboxBlocks = {
+    kind: "categoryToolbox",
+    contents: [
+      {
+        kind: "category",
+        name: "Container",
+        contents: ContainerBlocks,
+        categorystyle: "logic_category",
+      },
+      {
+        kind: "category",
+        name: "Header",
+        contents: HeaderBlocks,
+        categorystyle: "logic_category",
+      },
+      {
+        kind: "category",
+        name: "Text",
+        contents: TextBlocks,
+        categorystyle: "logic_category",
+      },
+    ],
+  };
+
+  return toolboxBlocks;
+}
+
+export default getHTMLBlocks;
