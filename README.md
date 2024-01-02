@@ -1,5 +1,5 @@
-# Messing around with Blockly
-Building Websites only using Blockly
+# Blockly web builder
+Building websites only using Blockly
  - HTML
  - CSS
  - Javascript
